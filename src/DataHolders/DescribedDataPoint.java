@@ -24,6 +24,14 @@ public class DescribedDataPoint extends DataPoint{
         return iunits;
     }
 
+    public DataPoint getIndDataPoint() {
+        return new DataPoint(iunits, independent);
+    }
+
+    public DataPoint getDepDataPoint() {
+        return new DataPoint(super.getUnit(), super.getMeasurement());
+    }
+
 
     
 
