@@ -14,7 +14,7 @@ public class UnitConverter {
     public static String conversionTypeList() {
         String str = "Here is the list of conversion tags:\n";
 
-        str += "\nStandard Metric: MSTND \nSupply the 'convert()' function with only the metric prefix (FIRST LETTER MUST BE UPPERCASE) you would like to convert to. For the base prefix, supply it with 'Base'\nEX: convert(new DataPoint(Seconds, 5), 'Kilo', MSTND)\n";
+        str += "\nMetric: MET \nSupply the 'convert()' function with only the metric prefix (FIRST LETTER MUST BE UPPERCASE) you would like to convert to. For the base prefix, supply it with 'Base'\nEX: convert(new DataPoint(Seconds, 5), 'Kilo', MET)\n";
 
         return str;
     }

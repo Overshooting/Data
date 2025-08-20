@@ -2,11 +2,13 @@ package Tools.Conversions;
 
 import DataHolders.DataPoint;
 import Tools.Conversions.ConversionTypes.ConversionType;
-import Tools.Conversions.ConversionTypes.StandardMetricConverter;
+import Tools.Conversions.ConversionTypes.MetricConverter;
+import Tools.Conversions.ConversionTypes.SingleConverters.InchFoot;
 
 public class ConversionCompiler {
 
-    public static final ConversionType[] CONVERSION_TYPES = {new StandardMetricConverter()};
+    public static final ConversionType[] CONVERSION_TYPES = {new MetricConverter(),
+            new InchFoot()};
 
     private static boolean contains(String str) {
         for (ConversionType ct : CONVERSION_TYPES) {
