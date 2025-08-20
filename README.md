@@ -18,7 +18,7 @@ WIP features:
 
 Calculator - currently only calculates standard deviation of a DataSet
 
-UnitConverter - Unit conversion tool for DataPoints, currently only includes standard metric conversions
+UnitConverter - Unit conversion tool for DataPoints, currently only includes metric and imperial unit conversions
 
 Graph - Extremely undeveloped graphing tool that will eventually allow you to graph complex datasets with custom parameters
 
