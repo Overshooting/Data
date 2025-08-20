@@ -1,6 +1,7 @@
-package Tools.Conversions.ConversionTypes;
+package Tools.Conversions.ConversionTypes.GeneralConverters;
 
 import DataHolders.DataPoint;
+import Tools.Conversions.ConversionTypes.ConversionType;
 
 import java.util.ArrayList;
 

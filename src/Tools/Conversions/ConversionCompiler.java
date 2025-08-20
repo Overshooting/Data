@@ -2,8 +2,8 @@ package Tools.Conversions;
 
 import DataHolders.DataPoint;
 import Tools.Conversions.ConversionTypes.ConversionType;
-import Tools.Conversions.ConversionTypes.ImperialConverter;
-import Tools.Conversions.ConversionTypes.MetricConverter;
+import Tools.Conversions.ConversionTypes.GeneralConverters.ImperialConverter;
+import Tools.Conversions.ConversionTypes.GeneralConverters.MetricConverter;
 
 public class ConversionCompiler {
 
