@@ -5,6 +5,10 @@ import Tools.Conversions.ConversionCompiler;
 
 public class UnitConverter {
 
+    public static final String METRIC = "MET";
+    public static final String IMPERIAL = "IMP";
+
+
     public static DataPoint convert(DataPoint d, String units, String conversiontype) {
 
         return ConversionCompiler.getConversion(d, units, conversiontype);
