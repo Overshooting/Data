@@ -29,6 +29,7 @@ public class MetricConverter extends ConversionType {
         super.setTag("MET");
     }
 
+    @Override
     public DataPoint convert(DataPoint d, String u) {
             String oldprefix = "";
 
@@ -87,7 +88,8 @@ public class MetricConverter extends ConversionType {
         throw new IllegalArgumentException("No Such Conversion Exists!");
     }
 
-    public ArrayList<String> getPrefixes() {
+    @Override
+    public ArrayList<String> getUnitStrings() {
         return prefixes;
     }
 

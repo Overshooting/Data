@@ -4,11 +4,12 @@ import DataHolders.DataPoint;
 import Tools.Conversions.ConversionTypes.ConversionType;
 import Tools.Conversions.ConversionTypes.GeneralConverters.ImperialConverter;
 import Tools.Conversions.ConversionTypes.GeneralConverters.MetricConverter;
+import Tools.Conversions.ConversionTypes.SingleConverters.ImperialToMetricConverter;
 
 public class ConversionCompiler {
 
     public static final ConversionType[] CONVERSION_TYPES = {new MetricConverter(),
-            new ImperialConverter()};
+            new ImperialConverter(), new ImperialToMetricConverter()};
 
     private static boolean contains(String str) {
         for (ConversionType ct : CONVERSION_TYPES) {
@@ -34,6 +35,16 @@ public class ConversionCompiler {
         } else {
             throw new IllegalArgumentException("No existing conversiontype!");
         }
+    }
+
+    public static ConversionType findConversion(String str) {
+        for (ConversionType c : CONVERSION_TYPES) {
+            if (c.getTag().equals(str)) {
+                return c;
+            }
+        }
+
+        return null;
     }
 
 }

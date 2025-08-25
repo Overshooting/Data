@@ -2,6 +2,8 @@ package Tools.Conversions.ConversionTypes;
 
 import DataHolders.DataPoint;
 
+import java.util.ArrayList;
+
 public abstract class ConversionType {
 
     private String tag;
@@ -16,5 +18,9 @@ public abstract class ConversionType {
 
     public DataPoint convert(DataPoint d, String u) {
         return new DataPoint(null, 0);
+    }
+
+    public ArrayList<String> getUnitStrings() {
+        return null;
     }
 }

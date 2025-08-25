@@ -1,21 +1,21 @@
-package Tools.Conversions.ConversionTypes.GeneralConverters;
+package Tools.Conversions.ConversionTypes.SingleConverters;
 
 import DataHolders.DataPoint;
+import Tools.Conversions.ConversionCompiler;
 import Tools.Conversions.ConversionTypes.ConversionType;
-
 import java.util.ArrayList;
 
-public class ImperialConverter extends ConversionType {
+public class ImperialToMetricConverter extends ConversionType {
 
-    private ArrayList<String> conversions = new ArrayList<String>();
-    private String[] conversionsInitializer = {"Inches:Feet", "Feet:Yards", "Yards:Miles",
-            "Fluid Ounces:Pints", "Pints:Quarts", "Quarts:Gallons", "Ounces:Pounds", "Pounds:Tons"};
+    public ArrayList<String> conversions = new ArrayList<String>();
+    public String[] conversionsInitializer = {"WIP"};
 
-    private ArrayList<String> ratios = new ArrayList<String>();
-    private String[] ratiosInitializer = {"12:1", "3:1", "1760:1", "16:1", "2:1", "4:1", "16:1",
-        "2000:1"};
+    public ArrayList<String> ratios = new ArrayList<String>();
+    public String[] ratiosInitializer= {"WIP"};
 
-    public ImperialConverter() {
+    public ImperialToMetricConverter() {
+        super.setTag("I2M");
+
         for (String str : conversionsInitializer) {
             conversions.add(str);
         }
@@ -23,12 +23,17 @@ public class ImperialConverter extends ConversionType {
         for (String str : ratiosInitializer) {
             ratios.add(str);
         }
-
-        super.setTag("IMP");
     }
 
-    @Override
     public DataPoint convert(DataPoint d, String newunit) {
+        boolean reverse = false;
+
+        for (String str : ConversionCompiler.findConversion("MET").getUnitStrings()) {
+            if (d.getUnit().contains(str)) {
+                reverse = true;
+            }
+        }
+
         String thisconversion = "";
         boolean found = false;
 
@@ -65,11 +70,6 @@ public class ImperialConverter extends ConversionType {
         } else {
             return secondspace / firstspace;
         }
-    }
-
-    @Override
-    public ArrayList<String> getUnitStrings() {
-        return conversions;
     }
 
 }
