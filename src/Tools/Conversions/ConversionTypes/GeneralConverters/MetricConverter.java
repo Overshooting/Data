@@ -31,8 +31,51 @@ public class MetricConverter extends ConversionType {
 
     @Override
     public DataPoint convert(DataPoint d, String u) {
-            String oldprefix = "";
+            if (d.getUnit() != u) {
+                String oldprefix = "";
 
+                for (String str : prefixes) {
+                    if (d.getUnit().indexOf(str) == 0) {
+                        oldprefix = str;
+                    }
+                }
+
+                if (oldprefix.length() == 0) {
+                    oldprefix = "Base";
+                }
+
+
+                double newvalue = 0;
+                if (prefixes.indexOf(oldprefix) < prefixes.indexOf(u)) {
+                    newvalue = d.getMeasurement() *
+                            Math.pow(10, -1 * (ratios.get(prefixes.indexOf(u)) -
+                                    findBaseDistance(prefixes.indexOf(oldprefix))));
+                } else {
+                    newvalue = d.getMeasurement() *
+                            Math.pow(10, -1 * (ratios.get(prefixes.indexOf(u)) +
+                                    findBaseDistance(prefixes.indexOf(oldprefix))));
+                }
+                String newunit = "";
+
+                if (u.equals("Base")) {
+                    newunit = d.getUnit().substring(oldprefix.length());
+                } else if (oldprefix.equals("Base")) {
+                    newunit = u + d.getUnit().toLowerCase();
+                } else {
+                    newunit = d.getUnit().substring(oldprefix.length());
+                    newunit = u + newunit;
+                }
+
+
+                return new DataPoint(newunit, newvalue);
+            } else {
+                return d;
+            }
+    }
+
+    public DataPoint convert(DataPoint d, String u, String type) {
+            String oldprefix = "";
+            String realtype = matchType(type);
 
             for (String str : prefixes) {
                 if (d.getUnit().indexOf(str) == 0) {
@@ -44,16 +87,25 @@ public class MetricConverter extends ConversionType {
                 oldprefix = "Base";
             }
 
-            double newvalue = d.getMeasurement() *
-                    Math.pow(10, ratios.get(prefixes.indexOf(u)) - findBaseDistance(prefixes.indexOf(oldprefix)));
-            String newunit = "";;
-            if (u.equals("Base")) {
-                newunit = d.getUnit().substring(oldprefix.length());
-            } else if (oldprefix.equals("Base")) {
-                newunit = u + d.getUnit().toLowerCase();
+
+            double newvalue = 0;
+            if (prefixes.indexOf(oldprefix) < prefixes.indexOf(u)) {
+                newvalue = d.getMeasurement() *
+                        Math.pow(10, -1 * (ratios.get(prefixes.indexOf(u)) -
+                                findBaseDistance(prefixes.indexOf(oldprefix))));
             } else {
-                newunit = d.getUnit().substring(oldprefix.length());
-                newunit = u + newunit;
+                newvalue = d.getMeasurement() *
+                        Math.pow(10, -1 * (ratios.get(prefixes.indexOf(u)) +
+                                findBaseDistance(prefixes.indexOf(oldprefix))));
+            }
+
+            String newunit = "";
+            if (u.equals("Base")) {
+                String realtypeone = realtype.substring(0,1);
+                String realtypetwo = realtype.substring(1);
+                newunit = realtypeone.toUpperCase() + realtypetwo;
+            } else {
+                newunit = u + realtype;
             }
 
 
@@ -91,6 +143,28 @@ public class MetricConverter extends ConversionType {
     @Override
     public ArrayList<String> getUnitStrings() {
         return prefixes;
+    }
+
+    public String getMetricType(String str) {
+        if (str.contains("Grams") || str.contains("grams") || str.contains("Gram") || str.contains("gram")) {
+            return "Mass";
+        } else if (str.contains("Meters") || str.contains("meters") || str.contains("Meter") || str.contains("meter")) {
+            return "Length";
+        } else if (str.contains("Liters") || str.contains("liters") || str.contains("Liter") || str.contains("liter")) {
+            return "Volume";
+        } else {
+            throw new IllegalArgumentException("Not a metric measurement!");
+        }
+    }
+
+    public String matchType(String str) {
+        if (str.equals("Length")) {
+            return "meters";
+        } else if (str.equals("Volume")) {
+            return "liters";
+        } else {
+            return "grams";
+        }
     }
 
 }

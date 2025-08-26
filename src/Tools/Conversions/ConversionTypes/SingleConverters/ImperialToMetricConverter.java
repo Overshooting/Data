@@ -3,15 +3,21 @@ package Tools.Conversions.ConversionTypes.SingleConverters;
 import DataHolders.DataPoint;
 import Tools.Conversions.ConversionCompiler;
 import Tools.Conversions.ConversionTypes.ConversionType;
+import Tools.Conversions.ConversionTypes.GeneralConverters.ImperialConverter;
+import Tools.Conversions.ConversionTypes.GeneralConverters.MetricConverter;
+
 import java.util.ArrayList;
 
 public class ImperialToMetricConverter extends ConversionType {
 
-    public ArrayList<String> conversions = new ArrayList<String>();
-    public String[] conversionsInitializer = {"WIP"};
+    private ArrayList<String> conversions = new ArrayList<String>();
+    private String[] conversionsInitializer = {"Feet:Base"};
 
-    public ArrayList<String> ratios = new ArrayList<String>();
-    public String[] ratiosInitializer= {"WIP"};
+    private ArrayList<String> ratios = new ArrayList<String>();
+    private String[] ratiosInitializer= {"3.28084:1"};
+
+    private MetricConverter metricConverter = new MetricConverter();
+    private ImperialConverter imperialConverter = new ImperialConverter();
 
     public ImperialToMetricConverter() {
         super.setTag("I2M");
@@ -25,11 +31,12 @@ public class ImperialToMetricConverter extends ConversionType {
         }
     }
 
-    public DataPoint convert(DataPoint d, String newunit) {
+    public DataPoint convert(DataPoint datapoint, String newunit) {
         boolean reverse = false;
+        String type = imperialConverter.getImperialType(datapoint.getUnit());
 
         for (String str : ConversionCompiler.findConversion("MET").getUnitStrings()) {
-            if (d.getUnit().contains(str)) {
+            if (datapoint.getUnit().contains(str)) {
                 reverse = true;
             }
         }
@@ -37,8 +44,11 @@ public class ImperialToMetricConverter extends ConversionType {
         String thisconversion = "";
         boolean found = false;
 
+        datapoint = makeBaseUnit(datapoint, reverse);
+        String tempUnit = makeBaseUnit(new DataPoint(newunit, -1), !reverse).getUnit();
+
         for (String str : conversions) {
-            if (str.contains(d.getUnit()) && str.contains(newunit)) {
+            if (str.contains(datapoint.getUnit()) && str.contains(tempUnit)) {
                 thisconversion = str;
                 found = true;
             }
@@ -48,15 +58,16 @@ public class ImperialToMetricConverter extends ConversionType {
             throw new IllegalArgumentException("No such unit conversion!");
         }
 
-        boolean isReversed = false;
-        if (!(thisconversion.indexOf(d.getUnit()) == 0)) {
-            isReversed = true;
+        double newTempMeasure = datapoint.getMeasurement() * getRatio(thisconversion, reverse);
+
+        datapoint = new DataPoint(tempUnit, newTempMeasure);
+
+
+        if (reverse) {
+            return imperialConverter.convert(datapoint, newunit);
+        } else {
+            return metricConverter.convert(datapoint, newunit, type);
         }
-
-        double newvalue = d.getMeasurement() * getRatio(thisconversion, isReversed);
-
-        return new DataPoint(newunit, newvalue);
-
     }
 
     private double getRatio(String thisconversion, boolean isReversed) {
@@ -69,6 +80,23 @@ public class ImperialToMetricConverter extends ConversionType {
             return firstspace / secondspace;
         } else {
             return secondspace / firstspace;
+        }
+    }
+
+    private DataPoint makeBaseUnit(DataPoint datapoint, boolean isMetric) {
+        if (isMetric) {
+            return metricConverter.convert(datapoint, "Base");
+        } else {
+            String type = imperialConverter.getImperialType(datapoint.getUnit());
+
+            if (type.equals("Length")) {
+                return imperialConverter.convert(datapoint, "Feet");
+            } else if (type.equals("Volume")) {
+                return imperialConverter.convert(datapoint, "Fluid Ounces");
+            } else {
+                return imperialConverter.convert(datapoint, "Pounds");
+            }
+
         }
     }
 

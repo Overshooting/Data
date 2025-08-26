@@ -21,7 +21,7 @@ public class UnitConverter {
 
         str += "\nMetric: MET \nSupply the 'convert()' function with only the metric prefix (FIRST LETTER MUST BE UPPERCASE) you would like to convert to. For the base prefix, supply it with 'Base'\nEX: convert(new DataPoint(Seconds, 5), 'Kilo', MET)\n";
         str += "\nImperial: IMP \nNothing special with this one, as with all conversions make sure your current and target units have the first letter capitalized\n";
-        str += "\nImperial to Metric (and vice versa): I2M \nLike standard Metric, supply only metric prefix (FIRST LETTER UPPERCASE) when converting\n";
+        str += "\nImperial to Metric (and vice versa): I2M \nLike standard Metric, supply only metric prefix (FIRST LETTER UPPERCASE) or 'Base' when converting\n";
 
         return str;
     }
