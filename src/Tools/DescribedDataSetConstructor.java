@@ -8,10 +8,10 @@ import java.util.Scanner;
 
 public class DescribedDataSetConstructor {
 
-    private ArrayList<DataPoint> dataList;
+    private ArrayList<DescribedDataPoint> dataList;
 
     public DescribedDataSetConstructor() {
-        dataList = new ArrayList<DataPoint>();
+        dataList = new ArrayList<DescribedDataPoint>();
 
         Scanner scan = new Scanner(System.in);
         System.out.println("\nSubmit a dataset in the format: 'Independent variable, Dependent variable, Independent units, Dependent units' || etc || etc ||\n");
@@ -37,7 +37,7 @@ public class DescribedDataSetConstructor {
             string = string.substring(string.indexOf(",")+1);
             String dunits = string;
 
-            dataList.add(new DescribedDataPoint(iunits, dunits, ind, dep));
+            dataList.add(new DescribedDataPoint(new DataPoint(iunits, ind), new DataPoint(dunits, dep)));
         }
     }
 

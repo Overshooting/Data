@@ -1,36 +1,26 @@
 package DataHolders;
 
-public class DescribedDataPoint extends DataPoint{
+public class DescribedDataPoint {
 
-    private double independent;
-    private String iunits;
+    private DataPoint independent, dependent;
 
-    public DescribedDataPoint(String idunits, String units, double idependent, double dependent) {
-        super(units, dependent);
-
-        this.iunits = idunits;
-        this.independent = idependent;
+    public DescribedDataPoint(DataPoint id, DataPoint d) {
+        independent = id;
+        dependent = d;
     }
 
-    public double getIndependent() {
+    public DataPoint getIndependent() {
         return independent;
     }
 
+    public DataPoint getDependent() {
+        return dependent;
+    }
+    
     public String toString() {
-        return "Independant: " + independent + " " + iunits + ", Dependent: " + super.getMeasurement() + " " + super.getUnit();
+        return "Independant: " + independent + ", Dependent: " + dependent;
     }
 
-    public String getIndependentUnits() {
-        return iunits;
-    }
-
-    public DataPoint getIndDataPoint() {
-        return new DataPoint(iunits, independent);
-    }
-
-    public DataPoint getDepDataPoint() {
-        return new DataPoint(super.getUnit(), super.getMeasurement());
-    }
 
 
     
