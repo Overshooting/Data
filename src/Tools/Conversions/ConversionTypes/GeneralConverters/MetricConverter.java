@@ -46,7 +46,7 @@ public class MetricConverter extends ConversionType {
 
 
                 double newvalue = 0;
-                if (prefixes.indexOf(oldprefix) < prefixes.indexOf(u)) {
+                if (prefixes.indexOf(oldprefix) > prefixes.indexOf(u)) {
                     newvalue = d.getMeasurement() *
                             Math.pow(10, -1 * (ratios.get(prefixes.indexOf(u)) -
                                     findBaseDistance(prefixes.indexOf(oldprefix))));
@@ -57,15 +57,13 @@ public class MetricConverter extends ConversionType {
                 }
                 String newunit = "";
 
-                if (u.equals("Base")) {
+                if (u.equals("Base") && !oldprefix.equals("Base")) {
                     newunit = d.getUnit().substring(oldprefix.length());
-                } else if (oldprefix.equals("Base")) {
+                } else if (oldprefix.equals("Base") && !u.equals("Base")) {
                     newunit = u + d.getUnit().toLowerCase();
                 } else {
-                    newunit = d.getUnit().substring(oldprefix.length());
-                    newunit = u + newunit;
+                    newunit = d.getUnit();
                 }
-
 
                 return new DataPoint(newunit, newvalue);
             } else {
@@ -153,7 +151,7 @@ public class MetricConverter extends ConversionType {
         } else if (str.contains("Liters") || str.contains("liters") || str.contains("Liter") || str.contains("liter")) {
             return "Volume";
         } else {
-            throw new IllegalArgumentException("Not a metric measurement!");
+            return "N/A";
         }
     }
 

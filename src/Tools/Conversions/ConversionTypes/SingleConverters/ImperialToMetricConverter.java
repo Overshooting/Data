@@ -1,7 +1,6 @@
 package Tools.Conversions.ConversionTypes.SingleConverters;
 
 import DataHolders.DataPoint;
-import Tools.Conversions.ConversionCompiler;
 import Tools.Conversions.ConversionTypes.ConversionType;
 import Tools.Conversions.ConversionTypes.GeneralConverters.ImperialConverter;
 import Tools.Conversions.ConversionTypes.GeneralConverters.MetricConverter;
@@ -11,10 +10,10 @@ import java.util.ArrayList;
 public class ImperialToMetricConverter extends ConversionType {
 
     private ArrayList<String> conversions = new ArrayList<String>();
-    private String[] conversionsInitializer = {"Feet:Base"};
+    private String[] conversionsInitializer = {"Feet:Base", "Fluid Ounces:Base", "Pounds:Base"};
 
     private ArrayList<String> ratios = new ArrayList<String>();
-    private String[] ratiosInitializer= {"3.28084:1"};
+    private String[] ratiosInitializer= {"3.28084:1", "33.814:1", "0.00220462:1"};
 
     private MetricConverter metricConverter = new MetricConverter();
     private ImperialConverter imperialConverter = new ImperialConverter();
@@ -33,22 +32,30 @@ public class ImperialToMetricConverter extends ConversionType {
 
     public DataPoint convert(DataPoint datapoint, String newunit) {
         boolean reverse = false;
-        String type = imperialConverter.getImperialType(datapoint.getUnit());
 
-        for (String str : ConversionCompiler.findConversion("MET").getUnitStrings()) {
-            if (datapoint.getUnit().contains(str)) {
-                reverse = true;
-            }
+        if (!metricConverter.getMetricType(datapoint.getUnit()).equals("N/A")) {
+            reverse = true;
+        }
+
+        String type;
+        if (reverse) {
+            type = metricConverter.getMetricType(datapoint.getUnit());
+        } else {
+            type = imperialConverter.getImperialType(datapoint.getUnit());
         }
 
         String thisconversion = "";
         boolean found = false;
 
+        System.out.println(datapoint);
+
         datapoint = makeBaseUnit(datapoint, reverse);
         String tempUnit = makeBaseUnit(new DataPoint(newunit, -1), !reverse).getUnit();
 
+        System.out.println(datapoint);
+
         for (String str : conversions) {
-            if (str.contains(datapoint.getUnit()) && str.contains(tempUnit)) {
+            if (str.contains(datapoint.getUnit()) || str.contains(tempUnit)) {
                 thisconversion = str;
                 found = true;
             }
@@ -62,6 +69,7 @@ public class ImperialToMetricConverter extends ConversionType {
 
         datapoint = new DataPoint(tempUnit, newTempMeasure);
 
+        System.out.println(datapoint);
 
         if (reverse) {
             return imperialConverter.convert(datapoint, newunit);

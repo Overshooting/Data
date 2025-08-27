@@ -14,8 +14,8 @@ public class ImperialConverter extends ConversionType {
             "Pounds:Tons", "Ounces:Tons"};
 
     private ArrayList<String> ratios = new ArrayList<String>();
-    private String[] ratiosInitializer = {"12:1", "36:1", "63360:1", "3:1", "5280:1", "1760:1", "20:1",
-            "40:1", "160:1", "2:1", "8:1", "4:1", "16:1", "2000:1", "32000:1"};
+    private String[] ratiosInitializer = {"12:1", "36:1", "63360:1", "3:1", "5280:1", "1760:1", "16:1",
+            "32:1", "128:1", "2:1", "8:1", "4:1", "16:1", "2000:1", "32000:1"};
 
     public ImperialConverter() {
         for (String str : conversionsInitializer) {
