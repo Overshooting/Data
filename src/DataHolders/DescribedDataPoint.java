@@ -16,7 +16,7 @@ public class DescribedDataPoint {
     public DataPoint getDependent() {
         return dependent;
     }
-    
+
     public String toString() {
         return "Independant: " + independent + ", Dependent: " + dependent;
     }
