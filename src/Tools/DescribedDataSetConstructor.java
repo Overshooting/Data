@@ -3,6 +3,9 @@ package Tools;
 import DataHolders.DataPoint;
 import DataHolders.DescribedDataPoint;
 import DataHolders.DescribedDataSet;
+import Tools.Units.UnitHolders.ImperialUnits;
+import Tools.Units.UnitHolders.MetricUnits;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -37,7 +40,11 @@ public class DescribedDataSetConstructor {
             string = string.substring(string.indexOf(",")+1);
             String dunits = string;
 
-            dataList.add(new DescribedDataPoint(new DataPoint(iunits, ind), new DataPoint(dunits, dep)));
+            if ((ImperialUnits.isAValidImperialUnit(iunits) || MetricUnits.isAValidMetricUnit(iunits)) && (ImperialUnits.isAValidImperialUnit(dunits) || MetricUnits.isAValidMetricUnit(dunits))) {
+                dataList.add(new DescribedDataPoint(new DataPoint(iunits, ind), new DataPoint(dunits, dep)));
+            } else {
+                throw new IllegalArgumentException("Invalid units!");
+            }
         }
     }
 

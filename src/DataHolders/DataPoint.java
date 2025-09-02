@@ -8,9 +8,9 @@ public class DataPoint {
     private String unit;
     private double measure;
 
-    public DataPoint(String u, double m) {
-        unit = u;
-        measure = m;
+    public DataPoint(String unit, double measure) {
+        this.unit = unit;
+        this.measure = measure;
     }
 
     public String getUnit() {

@@ -10,7 +10,7 @@ public class MetricConverter extends ConversionType {
     private ArrayList<String> prefixes = new ArrayList<String>();
     private String[] prefixesInitializer = {"Quecto", "Ronto", "Yocto", "Zepto", "Atto",
             "Femto", "Pico", "Nano", "Micro", "Milli", "Centi", "Deci", "Base", "Deka",
-            "Hecto", "Kilo", "Mega",  "Giga", "Tera", "Peta", "Exa", "Zetta", "Yotta",
+            "Hecto", "Kilo", "Mega", "Giga", "Tera", "Peta", "Exa", "Zetta", "Yotta",
             "Ronna", "Quetta"};
 
     private ArrayList<Integer> ratios = new ArrayList<Integer>();

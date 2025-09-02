@@ -1,13 +1,12 @@
 import DataHolders.DataPoint;
 import Tools.Graph;
 import Tools.UnitConverter;
+import Tools.Units.UnitHolders.MetricUnits;
 
 public class Main {
 
     public static void main(String[] args) {
-        DataPoint d = new DataPoint("Kilograms", 1);
-
-        System.out.println(UnitConverter.convert(d, "Tons", UnitConverter.IMPERIAL_TO_METRIC));
+        System.out.println(MetricUnits.isAValidMetricUnit("Kilometers"));
     }
 
 }
