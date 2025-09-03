@@ -9,13 +9,13 @@ public class DataSet {
     private ArrayList<DataPoint> dataList;
     private String units;
 
-    // Constructs a DataHolders.DataSet to contain str unit types of DataPoints
+    // Constructs a DataSet to contain str unit types of DataPoints
     public DataSet(String str) {
         dataList = new ArrayList<DataPoint>();
         units = str;
     }
 
-    //Constructs a DataHolders.DataSet matching the parameter ArrayList of DataHolders.DataPoint objects
+    //Constructs a DataSet matching the parameter ArrayList of DataPoint objects
     public DataSet(String str, ArrayList<DataPoint> d) {
         dataList = new ArrayList<DataPoint>();
 
@@ -35,7 +35,7 @@ public class DataSet {
         }
     }
 
-    //Returns the DataHolders.DataSet as an array string
+    //Returns the DataSet as an array string
     public String toString() {
         String str = "";
 
@@ -47,7 +47,7 @@ public class DataSet {
         return str;
     }
 
-    //Sorts the DataHolders.DataSet in ascending order
+    //Sorts the DataSet in ascending order
     public void sortAscendingMeasurements() {
         for (int i = 0; i < dataList.size(); i++) {
             for (int k = i+1; k < dataList.size(); k++) {
@@ -60,23 +60,27 @@ public class DataSet {
         }
     }
 
-    //Returns a DataHolders.DataPoint representing the median value of the DataHolders.DataSet
+    //Returns a DataPoint representing the median value of the DataSet
     public DataPoint getMedian() {
-        return Calculator.getMedian(dataList);
+        if (isSortedAscending()) {
+            return Calculator.getMedian(dataList);
+        } else {
+            throw new IllegalArgumentException("Sort dataset first!");
+        }
     }
 
-    //Returns a DataHolders.DataPoint representing the mean value of the DataHolders.DataSet
+    //Returns a DataPoint representing the mean value of the DataSet
     public DataPoint getMean() {
         return Calculator.getMean(dataList);
     }
 
-    //Returns a DataHolders.DataPoint representing the mode value of the DataHolders.DataSet
+    //Returns a DataPoint representing the mode value of the DataSet
     public DataPoint getMode() {
         return Calculator.getMedian(dataList);
     }
 
-    //Returns true if the DataHolders.DataSet has been sorted, false if not
-    public boolean isSorted() {
+    //Returns true if the DataSet has been sorted, false if not
+    public boolean isSortedAscending() {
         for (int i = 0; i < dataList.size()-1; i++) {
             if (dataList.get(i).getMeasurement() > dataList.get(i+1).getMeasurement()) {
                 return false;
@@ -86,14 +90,14 @@ public class DataSet {
         return true;
     }
 
-    //Rounds all the DataPoints in the DataHolders.DataSet to the number of parameter decimal places
+    //Rounds all the DataPoints in the DataSet to the number of parameter decimal places
     public void roundAll(int p) {
         for (DataPoint d : dataList) {
             d.round(p);
         }
     }
 
-    //Adds a single DataHolders.DataPoint to the DataHolders.DataSet, sorts the DataHolders.DataSet depending on the parameter boolean
+    //Adds a single DataPoint to the DataSet, sorts the DataSet depending on the parameter boolean
     public void addDataPoint(DataPoint d, boolean b) {
         if (units.length() > 0) {
             if (d.getUnit().equals(units)) {
@@ -112,7 +116,7 @@ public class DataSet {
     }
 
 
-    //Removes the first instance of a Datapoint containing a measurement of parameter d and returns it
+    //Removes the first instance of a DataPoint containing a measurement of parameter d and returns it
     public DataPoint removeFirstInstance(double d) {
         for (int i = 0; i < dataList.size(); i++) {
             if (dataList.get(i).getMeasurement() == d) {

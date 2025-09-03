@@ -29,6 +29,7 @@ public class ConversionCompiler {
         return -1;
     }
 
+    // Returns a converted DataPoint with str as its unit, from a given DataPoint
     public static DataPoint getConversion(DataPoint d, String str, String conversiontype) {
         if (contains(conversiontype)) {
             return CONVERSION_TYPES[indexOf(conversiontype)].convert(d, str);
@@ -37,6 +38,7 @@ public class ConversionCompiler {
         }
     }
 
+    // Returns the ConversionType matching the given conversionType tag
     public static ConversionType findConversion(String str) {
         for (ConversionType c : CONVERSION_TYPES) {
             if (c.getTag().equals(str)) {

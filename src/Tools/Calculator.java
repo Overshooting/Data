@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class Calculator {
 
+    // Returns a DataPoint representing the median value of a given sorted DataPoint ArrayList
     public static DataPoint getMedian(ArrayList<DataPoint> dataList) {
         int middle = dataList.size() / 2;
 
@@ -17,6 +18,7 @@ public class Calculator {
         }
     }
 
+    // Returns a DataPoint representing the mean value of a given DataPoint ArrayList
     public static DataPoint getMean(ArrayList<DataPoint> dataList) {
         double sum = 0;
         int count = 0;
@@ -27,6 +29,7 @@ public class Calculator {
         return new DataPoint(dataList.get(0).getUnit(), sum / count);
     }
 
+    // Returns a DataPoint representing the mode value of a given DataPoint ArrayList
     public DataPoint getMode(ArrayList<DataPoint> dataList) {
         double num = 0;
         double measure = Double.MIN_VALUE;
@@ -49,7 +52,7 @@ public class Calculator {
         return new DataPoint(dataList.get(0).getUnit(), measure);
     }
 
-
+    // Returns the standard deviation of a DataSet
     public static double strdDeviation(DataSet dataset) {
         if (dataset.getDataList().size() > 0) {
             double mean = getMean(dataset.getDataList()).getMeasurement();

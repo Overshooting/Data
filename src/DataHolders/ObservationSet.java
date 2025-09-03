@@ -8,6 +8,7 @@ public class ObservationSet extends DataSet {
         super(str);
     }
 
+    // Sorts the ObservationSet in ascending order depending on the time each Observation was taken
     public void sortAscendingChrono() {
         ArrayList<DataPoint> dataList = super.getDataList();
 

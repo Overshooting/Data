@@ -9,13 +9,14 @@ public class UnitConverter {
     public static final String IMPERIAL = "IMP";
     public static final String IMPERIAL_TO_METRIC = "I2M";
 
-
+    // Converts a given DataPoint to the given units, using the given conversiontype to find the right converter to use
     public static DataPoint convert(DataPoint d, String units, String conversiontype) {
 
         return ConversionCompiler.getConversion(d, units, conversiontype);
 
     }
 
+    // Lists all available conversionTypes
     public static String conversionTypeList() {
         String str = "Here is the list of conversion tags:\n";
 

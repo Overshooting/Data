@@ -35,6 +35,7 @@ public class Time {
         return hour + ":" + minute + ":" + second;
     }
 
+    // Returns a String representing the Time in standard, rather than military
     public String getStandard() {
         if (hour > 12) {
             return (hour % 12) + ":" + minute + ":" + second;

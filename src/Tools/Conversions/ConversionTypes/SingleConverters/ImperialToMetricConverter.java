@@ -30,6 +30,7 @@ public class ImperialToMetricConverter extends ConversionType {
         }
     }
 
+    // Converts a given DataPoint to its metric/imperial counterpart DataPoint
     public DataPoint convert(DataPoint datapoint, String newunit) {
         boolean reverse = false;
 
@@ -78,6 +79,7 @@ public class ImperialToMetricConverter extends ConversionType {
         }
     }
 
+    // Returns the ratio of a given conversion, accounting for the direction of the conversion
     private double getRatio(String thisconversion, boolean isReversed) {
         String thisratio = ratios.get(conversions.indexOf(thisconversion));
 
@@ -91,6 +93,7 @@ public class ImperialToMetricConverter extends ConversionType {
         }
     }
 
+    // Converts the given datapoint to its system's base unit
     private DataPoint makeBaseUnit(DataPoint datapoint, boolean isMetric) {
         if (isMetric) {
             return metricConverter.convert(datapoint, "Base");

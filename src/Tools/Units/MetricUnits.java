@@ -13,15 +13,16 @@ public class MetricUnits {
 
     private static String[] typesList = {"Meters", "Grams", "Liters"};
 
-    public static String createMetricUnit(String degree, String type) {
-        if (contains(degreeList, degree) && contains(typesList, type)) {
-            String degOne = degree.substring(0,1);
-            degree = degOne.toUpperCase() + degree.substring(1);
+    // Creates a valid metric unit based on the provided degree and type of measurement
+    public static String createMetricUnit(String prefix, String type) {
+        if (contains(degreeList, prefix) && contains(typesList, type)) {
+            String degOne = prefix.substring(0,1);
+            prefix = degOne.toUpperCase() + prefix.substring(1);
 
             String typOne = type.substring(0, 1);
             type = typOne.toLowerCase() + type.substring(1);
 
-            return degree + type;
+            return prefix + type;
         } else {
             return "Not a unit";
         }

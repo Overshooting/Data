@@ -30,6 +30,7 @@ public class MetricConverter extends ConversionType {
     }
 
     @Override
+    // Converts a given metric DataPoint to another metric DataPoint with u
     public DataPoint convert(DataPoint d, String u) {
             if (d.getUnit() != u) {
                 String oldprefix = "";
@@ -71,6 +72,7 @@ public class MetricConverter extends ConversionType {
             }
     }
 
+    // Converts a given metric DataPoint to another metric DataPoint with u, accounting for the given metric type
     public DataPoint convert(DataPoint d, String u, String type) {
             String oldprefix = "";
             String realtype = matchType(type);
@@ -110,6 +112,7 @@ public class MetricConverter extends ConversionType {
             return new DataPoint(newunit, newvalue);
     }
 
+    // Returns the distance of a given prefix index from the Base measurement
     public int findBaseDistance(int oldprefixplace) {
         boolean found = false;
         int count = 0;
@@ -143,6 +146,7 @@ public class MetricConverter extends ConversionType {
         return prefixes;
     }
 
+    // Matches the given metric measurement type to its generic version
     public String getMetricType(String str) {
         if (str.contains("Grams") || str.contains("grams") || str.contains("Gram") || str.contains("gram")) {
             return "Mass";
@@ -155,6 +159,7 @@ public class MetricConverter extends ConversionType {
         }
     }
 
+    // Matches the given generic measurement type to its metric version
     public String matchType(String str) {
         if (str.equals("Length")) {
             return "meters";

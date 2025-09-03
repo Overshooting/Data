@@ -20,6 +20,7 @@ public class DescribedDataSetConstructor {
         System.out.println("\nSubmit a dataset in the format: 'Independent variable, Dependent variable, Independent units, Dependent units' || etc || etc ||\n");
         String str = scan.nextLine();
 
+        //Splices each individual "token" of the string into its own String, stored in the tokens ArrayList
         ArrayList<String> tokens = new ArrayList<String>();
         while (str.contains("||")) {
             tokens.add(str.substring(0, str.indexOf("||") - 1));
@@ -27,10 +28,12 @@ public class DescribedDataSetConstructor {
             str = str.substring(str.indexOf("||") + 2);
         }
 
+        // Gets rid of extra space in each token
         for (int i = 1; i < tokens.size(); i++) {
             tokens.set(i, tokens.get(i).substring(1));
         }
 
+        // Creates independent and dependent units and values from each token
         for (String string : tokens) {
             double ind = Double.parseDouble(string.substring(0, string.indexOf(",")));
             string = string.substring(string.indexOf(",")+1);

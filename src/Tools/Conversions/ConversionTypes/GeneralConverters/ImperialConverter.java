@@ -30,6 +30,7 @@ public class ImperialConverter extends ConversionType {
     }
 
     @Override
+    // Converts a given imperial DataPoint to another imperial DataPoint with newunit
     public DataPoint convert(DataPoint d, String newunit) {
         if (d.getUnit() != newunit) {
             String thisconversion = "";
@@ -61,6 +62,7 @@ public class ImperialConverter extends ConversionType {
 
     }
 
+    // Returns the proper ratio for a given conversion String, accounting for the direction of the conversion
     private double getRatio(String thisconversion, boolean isReversed) {
         String thisratio = ratios.get(conversions.indexOf(thisconversion));
 
@@ -79,6 +81,7 @@ public class ImperialConverter extends ConversionType {
         return conversions;
     }
 
+    // Returns the measurement type of the given Imperial unit
     public String getImperialType(String str) {
         for (int i = 0; i < conversions.size(); i++) {
             if (conversions.get(i).contains(str)) {

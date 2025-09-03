@@ -25,6 +25,7 @@ public class DataPoint {
         return measure + " " + unit;
     }
 
+    // Rounds the DataPoint's measurement to the nearest whole number
     public void round(int p) {
         BigDecimal bd = BigDecimal.valueOf(measure);
         bd = bd.setScale(p, RoundingMode.HALF_UP);

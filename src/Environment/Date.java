@@ -12,6 +12,7 @@ public class Date {
         year = y;
     }
 
+    // Returns true if the Date is not a real date on the calendar
     public boolean isIllegalDate() {
         if (day < 1 || day > 31 || year < 0 || month < 1 || month > 12) {
             return false;
@@ -81,6 +82,7 @@ public class Date {
         return str;
     }
 
+    // Returns the day of the week represented by an int value
     public int dayOfWeekInt() {
         int century = this.getYear() / 100;
         int centuryValue = 2*(3 - (century % 4));
@@ -118,6 +120,7 @@ public class Date {
         return weekday;
     }
 
+    // Returns the maximum days of the month of the Date
     public int maxDays() {
         if (month == 4 || month == 6 || month == 9 || month == 11) {
             return 30;
@@ -166,6 +169,7 @@ public class Date {
         return c;
     }
 
+    // Generates a random valid date
     public static Date randDate() {
         return new Date((int)((Math.random() * 20)), (int)((Math.random()*12)+1), (int)(Math.random()*30)+1);
     }
