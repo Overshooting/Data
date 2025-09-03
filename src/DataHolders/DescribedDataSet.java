@@ -40,6 +40,30 @@ public class DescribedDataSet{
         }
     }
 
+    public void sortDescendingIndependents() {
+        for (int i = 0; i < dataList.size(); i++) {
+            for (int k = i+1; k < dataList.size(); k++) {
+                if ((dataList.get(k)).getDependent().getMeasurement() >= (dataList.get(i)).getDependent().getMeasurement()) {
+                    DescribedDataPoint tmp = dataList.get(k);
+                    dataList.set(k, dataList.get(i));
+                    dataList.set(i,tmp);
+                }
+            }
+        }
+    }
+
+    public void sortDescendingDependents() {
+        for (int i = 0; i < dataList.size(); i++) {
+            for (int k = i+1; k < dataList.size(); k++) {
+                if ((dataList.get(k)).getDependent().getMeasurement() >= (dataList.get(i)).getDependent().getMeasurement()) {
+                    DescribedDataPoint tmp = dataList.get(k);
+                    dataList.set(k, dataList.get(i));
+                    dataList.set(i,tmp);
+                }
+            }
+        }
+    }
+
     public void addDataPoint(DescribedDataPoint d) {
         if (d.getIndependent().getUnit().equals(iunits) && d.getDependent().getUnit().equals(dunits)) {
             dataList.add(d);

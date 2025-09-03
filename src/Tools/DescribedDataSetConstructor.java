@@ -3,8 +3,8 @@ package Tools;
 import DataHolders.DataPoint;
 import DataHolders.DescribedDataPoint;
 import DataHolders.DescribedDataSet;
-import Tools.Units.UnitHolders.ImperialUnits;
-import Tools.Units.UnitHolders.MetricUnits;
+import Tools.Units.ImperialUnits;
+import Tools.Units.MetricUnits;
 
 import java.util.ArrayList;
 import java.util.Scanner;

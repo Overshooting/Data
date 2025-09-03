@@ -1,5 +1,7 @@
 package DataHolders;
 
+import Tools.Calculator;
+
 import java.util.*;
 
 public class DataSet {
@@ -60,52 +62,17 @@ public class DataSet {
 
     //Returns a DataHolders.DataPoint representing the median value of the DataHolders.DataSet
     public DataPoint getMedian() {
-        if (isSorted()) {
-            int middle = dataList.size() / 2;
-
-            if (middle % 2 == 0) {
-                return new DataPoint(units, (dataList.get(middle).getMeasurement() + dataList.get(middle-1).getMeasurement())/2);
-            } else {
-                return new DataPoint(units, dataList.get(middle).getMeasurement());
-            }
-        } else {
-            System.out.println("Sort dataset first");
-            return new DataPoint("NULL", Double.MIN_VALUE);
-        }
+        return Calculator.getMedian(dataList);
     }
 
     //Returns a DataHolders.DataPoint representing the mean value of the DataHolders.DataSet
     public DataPoint getMean() {
-        double sum = 0;
-        int count = 0;
-        for (DataPoint d : dataList) {
-            sum += d.getMeasurement();
-            count++;
-        }
-        return new DataPoint(units, sum / count);
+        return Calculator.getMean(dataList);
     }
 
     //Returns a DataHolders.DataPoint representing the mode value of the DataHolders.DataSet
     public DataPoint getMode() {
-        double num = 0;
-        double measure = Double.MIN_VALUE;
-
-        for (int i = 0; i < dataList.size(); i++) {
-            int tempnum = 0;
-
-            double comp = dataList.get(i).getMeasurement();
-            for (int k = 0; k < dataList.size(); k++) {
-                if (dataList.get(k).getMeasurement() == comp) {
-                    tempnum++;
-                }
-                if (tempnum > num) {
-                    num = tempnum;
-                    measure = dataList.get(k).getMeasurement();
-                }
-            }
-        }
-
-        return new DataPoint(units, measure);
+        return Calculator.getMedian(dataList);
     }
 
     //Returns true if the DataHolders.DataSet has been sorted, false if not

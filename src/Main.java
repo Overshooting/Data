@@ -1,7 +1,4 @@
-import DataHolders.DataPoint;
-import Tools.Graph;
-import Tools.UnitConverter;
-import Tools.Units.UnitHolders.MetricUnits;
+import Tools.Units.MetricUnits;
 
 public class Main {
 
