@@ -1,15 +1,15 @@
+package DataHolders;
+
+import Tools.Calculator;
+
+import java.util.*;
+
 /**
  * This class holds lists of DataPoints and contains options for sorting and analyzing them
  *
  * @version 1.0.0
  *
  */
-
-package DataHolders;
-
-import Tools.Calculator;
-
-import java.util.*;
 
 public class DataSet {
 

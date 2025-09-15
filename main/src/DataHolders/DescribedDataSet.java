@@ -1,13 +1,13 @@
+package DataHolders;
+
+import java.util.ArrayList;
+
 /**
  * This class holds lists of DescribedDataPoints for sorting and analyzing them
  *
  * @version 1.0.0
  *
  */
-
-package DataHolders;
-
-import java.util.ArrayList;
 
 public class DescribedDataSet{
 

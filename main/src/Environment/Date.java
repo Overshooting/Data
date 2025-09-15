@@ -1,18 +1,34 @@
 package Environment;
 
+/**
+ * This class is meant to store dates to be used to describe Observations made
+ *
+ * @version 1.0.0
+ *
+ */
+
 public class Date {
 
     private int day, month, year;
     private static final String[] MONTHS = {"January","February","March","April","May","June","July","August","September","October","November","December"};
     private static final String[] DAYS = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
 
+    /**
+     * Creates a Date using the given date, month, and year ints
+     * @param d The day of the Date
+     * @param m The month of the Date
+     * @param y The year of the Date
+     */
     public Date(int d, int m, int y) {
         day = d;
         month = m;
         year = y;
     }
 
-    // Returns true if the Date is not a real date on the calendar
+    /**
+     * Checks whether the Date is a real date on the calendar
+     * @return Returns true if the Date is not a real date, false if it is a real date
+     */
     public boolean isIllegalDate() {
         if (day < 1 || day > 31 || year < 0 || month < 1 || month > 12) {
             return false;
@@ -23,6 +39,10 @@ public class Date {
         }
     }
 
+    /**
+     * Checks whether this date falls on a leap year
+     * @return Returns true if the Date is a leap year, false if it is not
+     */
     public boolean isALeapYear() {
         if (year % 4 == 0) {
             if (year % 100 == 0) {
@@ -39,26 +59,50 @@ public class Date {
         }
     }
 
+    /**
+     * Returns day
+     * @return Returns the Date's day
+     */
     public int getDay() {
         return day;
     }
 
+    /**
+     * Returns month
+     * @return Returns Date's month
+     */
     public int getMonth() {
         return month;
     }
 
+    /**
+     * Returns year
+     * @return Returns Date's year
+     */
     public int getYear() {
         return year;
     }
 
+    /**
+     * Returns the day of the week that the Date falls on
+     * @return Returns a String representing the Date's day of the week
+     */
     public String getWeekDay() {
         return DAYS[dayOfWeekInt()];
     }
 
+    /**
+     * Returns the month that the Date is in
+     * @return Returns a String representing the Date's month of the year
+     */
     public String getMonthString() {
         return MONTHS[month - 1];
     }
 
+    /**
+     * Returns the name of the day the Date falls on
+     * @return Returns a String representing the name of the Date's day
+     */
     public String getDayString() {
         String str = "";
         int day = this.getDay();
@@ -82,7 +126,10 @@ public class Date {
         return str;
     }
 
-    // Returns the day of the week represented by an int value
+    /**
+     * Returns the day of the week that the Date falls on
+     * @return Returns an int value representing the Date's day of the week. 0 is Sunday, 6 is Saturday
+     */
     public int dayOfWeekInt() {
         int century = this.getYear() / 100;
         int centuryValue = 2*(3 - (century % 4));
@@ -120,7 +167,10 @@ public class Date {
         return weekday;
     }
 
-    // Returns the maximum days of the month of the Date
+    /**
+     * Returns the maximum number of days that the Date's month can have
+     * @return Returns an int representing the maximum number of days in the Date's month
+     */
     public int maxDays() {
         if (month == 4 || month == 6 || month == 9 || month == 11) {
             return 30;
@@ -133,10 +183,19 @@ public class Date {
         }
     }
 
+    /**
+     * Returns the Date as a String
+     * @return Returns the Date as a String in the form of "Weekday Month day, year"
+     */
     public String toString() {
         return getWeekDay() + " " + getMonthString() + " " + getDayString() + ", " + getYear();
     }
 
+    /**
+     * Compare's this Date's values to another dates values in chronological order
+     * @param o The other Date to be compared
+     * @return Returns an int representing whether this has a sooner, later, or the same date as the other Date
+     */
     public int compareTo(Date o) {
         int myday = this.getDay();
         int mymonth = this.getMonth();
@@ -169,7 +228,10 @@ public class Date {
         return c;
     }
 
-    // Generates a random valid date
+    /**
+     * Returns a random Date
+     * @return Returns a new randomly generated valid Date object
+     */
     public static Date randDate() {
         return new Date((int)((Math.random() * 20)), (int)((Math.random()*12)+1), (int)(Math.random()*30)+1);
     }

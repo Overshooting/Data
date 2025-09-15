@@ -1,14 +1,14 @@
+package DataHolders;
+
+import Environment.Time;
+import Environment.Date;
+
 /**
  * This class extends DataPoints to also contain the date and times in which they were recorded or created
  *
  * @version 1.0.0
  *
  */
-
-package DataHolders;
-
-import Environment.Time;
-import Environment.Date;
 
 public class Observation extends DataPoint {
 

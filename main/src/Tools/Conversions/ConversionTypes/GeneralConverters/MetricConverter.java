@@ -5,6 +5,13 @@ import Tools.Conversions.ConversionTypes.ConversionType;
 
 import java.util.ArrayList;
 
+/**
+ * This is a class meant to convert DataPoints holding metric units into new DataPoints holding different metric units, as well as provide a few tools for evaluating metric units
+ *
+ * @version 1.0.0
+ *
+ */
+
 public class MetricConverter extends ConversionType {
 
     private ArrayList<String> prefixes = new ArrayList<String>();
@@ -17,6 +24,9 @@ public class MetricConverter extends ConversionType {
     private int[] ratiosInitializer = {-30, -27, -24, -21, -18, -15, -12, -9, -6, -3, -2, -1,
             0, 1, 2, 3, 6, 9, 12, 15, 18, 21, 24, 27, 30};
 
+    /**
+     * Creates a new MetricConverter object
+     */
     public MetricConverter() {
         for (String str : prefixesInitializer) {
             prefixes.add(str);
@@ -29,8 +39,12 @@ public class MetricConverter extends ConversionType {
         super.setTag("MET");
     }
 
-    @Override
-    // Converts a given metric DataPoint to another metric DataPoint with u
+    /**
+     * Converts one metric DataPoint into a new DataPoint with different metric units
+     * @param d The DataPoint to be converted
+     * @param u The new unit for the DataPoint to be converted to
+     * @return Returns a new DataPoint holding the newly converted value from the DataPoint d's units to newunits, with properly formatted newunits as its unit value
+     */
     public DataPoint convert(DataPoint d, String u) {
             if (d.getUnit() != u) {
                 String oldprefix = "";
@@ -72,7 +86,13 @@ public class MetricConverter extends ConversionType {
             }
     }
 
-    // Converts a given metric DataPoint to another metric DataPoint with u, accounting for the given metric type
+    /**
+     * Converts one metric DataPoint into a new DataPoint with different metric units, then changes the new DataPoint's unit string to match the given measurement type
+     * @param d The DataPoint to be converted
+     * @param u The new unit for the DataPoint to be converted to
+     * @param type The measurement type for the new DataPoint's unit String
+     * @return Returns a new DataPoint holding the newly converted value from the DataPoint d's units to u, with properly formatted u as its unit value
+     */
     public DataPoint convert(DataPoint d, String u, String type) {
             String oldprefix = "";
             String realtype = matchType(type);
@@ -112,7 +132,12 @@ public class MetricConverter extends ConversionType {
             return new DataPoint(newunit, newvalue);
     }
 
-    // Returns the distance of a given prefix index from the Base measurement
+    /**
+     * Finds the numerical distance of a given metric prefix from the base prefix
+     * @param oldprefixplace The index of the given prefix on the conversions ArrayList
+     * @return Returns an int representing how far a prefix is from the base prefix in powers of 10
+     * @throws IllegalArgumentException Throws IllegalArgumentException if there is no such prefix on the ArrayList
+     */
     public int findBaseDistance(int oldprefixplace) {
         boolean found = false;
         int count = 0;
@@ -141,12 +166,19 @@ public class MetricConverter extends ConversionType {
         throw new IllegalArgumentException("No Such Conversion Exists!");
     }
 
-    @Override
+    /**
+     * Returns the list of unit conversions
+     * @return Returns the ArrayList of conversion Strings
+     */
     public ArrayList<String> getUnitStrings() {
         return prefixes;
     }
 
-    // Matches the given metric measurement type to its generic version
+    /**
+     * Returns the type of measurement a metric unit represents
+     * @param str The unit
+     * @return Returns a String representing the type of measurement the unit suffix represents, or N/A if the measurement type is unknown
+     */
     public String getMetricType(String str) {
         if (str.contains("Grams") || str.contains("grams") || str.contains("Gram") || str.contains("gram")) {
             return "Mass";
@@ -159,7 +191,11 @@ public class MetricConverter extends ConversionType {
         }
     }
 
-    // Matches the given generic measurement type to its metric version
+    /**
+     * Matches a given measurement type to its metric-specific counterpart
+     * @param str The measurement type
+     * @return Returns a String representing the type of metric measurement type the given String matches (EX: "Length" -> "Meters")
+     */
     public String matchType(String str) {
         if (str.equals("Length")) {
             return "meters";

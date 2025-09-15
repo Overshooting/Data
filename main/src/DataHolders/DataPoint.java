@@ -1,15 +1,14 @@
+package DataHolders;
+
+import java.lang.*;
+import java.math.*;
+
 /**
  * This class is the basis for the entire Data projects' data structures
  *
  * @version 1.0.0
  *
  */
-
-
-package DataHolders;
-
-import java.lang.*;
-import java.math.*;
 
 public class DataPoint {
 
@@ -36,7 +35,7 @@ public class DataPoint {
 
     /**
      * Returns measurement
-     * @return Returns the measurement of the DataPOint
+     * @return Returns the measurement of the DataPoint
      */
     public double getMeasurement() {
         return measure;

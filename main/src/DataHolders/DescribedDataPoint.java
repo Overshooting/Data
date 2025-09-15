@@ -1,11 +1,11 @@
+package DataHolders;
+
 /**
  * This class uses DataPoints to create data containing independent and dependent variables
  *
  * @version 1.0.0
  *
  */
-
-package DataHolders;
 
 public class DescribedDataPoint {
 

@@ -7,6 +7,13 @@ import Tools.Conversions.ConversionTypes.GeneralConverters.MetricConverter;
 
 import java.util.ArrayList;
 
+/**
+ * This class is meant to convert metric unit DataPoints to imperial unit DataPoints and vice versa
+ *
+ * @version 1.0.0
+ *
+ */
+
 public class ImperialToMetricConverter extends ConversionType {
 
     private ArrayList<String> conversions = new ArrayList<String>();
@@ -18,6 +25,9 @@ public class ImperialToMetricConverter extends ConversionType {
     private MetricConverter metricConverter = new MetricConverter();
     private ImperialConverter imperialConverter = new ImperialConverter();
 
+    /**
+     * Creates a new ImperialToMetricConverter object
+     */
     public ImperialToMetricConverter() {
         super.setTag("I2M");
 
@@ -30,7 +40,13 @@ public class ImperialToMetricConverter extends ConversionType {
         }
     }
 
-    // Converts a given DataPoint to its metric/imperial counterpart DataPoint
+    /**
+     * Converts a given DataPoint to its opposite measurement system counterpart
+     * @param datapoint The given DataPoint to be converted
+     * @param newunit The new units in the opposite measurement system for DataPoint to be converted to
+     * @return Returns a new DataPoint representing the converted DataPoint from its old units to newunit, with a properly formatted unit String
+     * @throws IllegalArgumentException Throws a new IllegalArgumentException if the given conversion from DataPoint's units to newunit does not exist on the conversions ArrayList
+     */
     public DataPoint convert(DataPoint datapoint, String newunit) {
         boolean reverse = false;
 
@@ -79,7 +95,12 @@ public class ImperialToMetricConverter extends ConversionType {
         }
     }
 
-    // Returns the ratio of a given conversion, accounting for the direction of the conversion
+    /**
+     * Gives the proper conversion ratio for a given conversion
+     * @param thisconversion The String matching a conversion ratio found in conversions
+     * @param isReversed Boolean value representing the direction of the conversion across the given String
+     * @return Returns a double value representing the conversion ratio between two units described by thisconversion
+     */
     private double getRatio(String thisconversion, boolean isReversed) {
         String thisratio = ratios.get(conversions.indexOf(thisconversion));
 
@@ -93,7 +114,12 @@ public class ImperialToMetricConverter extends ConversionType {
         }
     }
 
-    // Converts the given datapoint to its system's base unit
+    /**
+     * Returns a converted DataPoint to its system's base unit
+     * @param datapoint The DataPoint to be converted
+     * @param isMetric Boolean representing whether this is a metric system or imperial system conversion
+     * @return Returns a DataPoint representing the given DataPoint converted to the given its system's base unit value
+     */
     private DataPoint makeBaseUnit(DataPoint datapoint, boolean isMetric) {
         if (isMetric) {
             return metricConverter.convert(datapoint, "Base");

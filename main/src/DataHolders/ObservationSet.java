@@ -1,13 +1,13 @@
+package DataHolders;
+
+import java.util.ArrayList;
+
 /**
  * This class is for DataSets meant specifically for Observation objects
  *
  * @version 1.0.0
  *
  */
-
-package DataHolders;
-
-import java.util.ArrayList;
 
 public class ObservationSet extends DataSet {
 
