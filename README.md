@@ -20,6 +20,6 @@ Tools:
   UnitConverter - Unit conversion tool for DataPoints, currently only includes basic metric and imperial unit conversions
 
 
-Coming Eventually features:
+Coming Eventually (maybe) features:
   Graph - Extremely undeveloped graphing tool that will eventually allow you to graph complex datasets with custom parameters
 
