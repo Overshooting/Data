@@ -4,7 +4,10 @@ import java.lang.*;
 import java.math.*;
 
 /**
- * This class is the basis for the entire Data projects' data structures
+ * This class is the basis for the entire Data projects' data structures. Datapoints store a double measurement value and a String representing the units of the measurement that the DataPoint represents.
+ * In order for a DataPoint to be properly recognized by many of the conversion and calculation methods in this project, the units follow a standard for capitalization and language conventions.
+ * Units of a DataPoint must have their first letter be uppercase, and are always in plural form. Refer to the Tools.Units package for classes that construct valid unit Strings or contain constants to help you with standard units.
+ * These unit classes may not contain all possible units in a system of measurement, only common ones.
  *
  * @version 1.0.0
  *

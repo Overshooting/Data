@@ -13,6 +13,10 @@ public class DescribedDataSetConstructor {
 
     private ArrayList<DescribedDataPoint> dataList;
 
+    /**
+     * Creates a DescribedDataSetConstructor which then solicits and accepts a formatted String representing DescribedDataPoints, which is then used to construct a local DescribedDataSet ArrayList
+     * @throws IllegalArgumentException Throws an IllegalArgumentException if any of the units found in the input String taken by Scanner are unrecognized units by the Tools.Units package classes
+     */
     public DescribedDataSetConstructor() {
         dataList = new ArrayList<DescribedDataPoint>();
 
@@ -51,6 +55,10 @@ public class DescribedDataSetConstructor {
         }
     }
 
+    /**
+     * Turns the local DescribedDataSet ArrayList into a DescribedDataSet
+     * @return Returns a DescribedDataSet created from this.dataList, which was populated with DescribedDataPoints during construction
+     */
     public DescribedDataSet createDataSet() {
         return new DescribedDataSet(dataList);
     }

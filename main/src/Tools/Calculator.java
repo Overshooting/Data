@@ -5,9 +5,20 @@ import DataHolders.DataPoint;
 
 import java.util.ArrayList;
 
+/**
+ * This class is meant to be used for basic statistical analysis of DataPoint ArrayLists, such as those found in DataSets
+ *
+ * version 1.0.0
+ *
+ */
+
 public class Calculator {
 
-    // Returns a DataPoint representing the median value of a given sorted DataPoint ArrayList
+    /**
+     * Finds the median value of a DataPoint ArrayList
+     * @param dataList The ArrayList to be used in the calculation
+     * @return Returns a DataPoint representing the DataPoint with the median value of the DataPoint ArrayList
+     */
     public static DataPoint getMedian(ArrayList<DataPoint> dataList) {
         int middle = dataList.size() / 2;
 
@@ -18,7 +29,11 @@ public class Calculator {
         }
     }
 
-    // Returns a DataPoint representing the mean value of a given DataPoint ArrayList
+    /**
+     * Finds the mean value of a DataPoint ArrayList
+     * @param dataList The ArrayList to be used in the calculation
+     * @return Returns a DataPoint representing the DataPoint with the mean value of the DataPoint ArrayList
+     */
     public static DataPoint getMean(ArrayList<DataPoint> dataList) {
         double sum = 0;
         int count = 0;
@@ -29,7 +44,11 @@ public class Calculator {
         return new DataPoint(dataList.get(0).getUnit(), sum / count);
     }
 
-    // Returns a DataPoint representing the mode value of a given DataPoint ArrayList
+    /**
+     * Finds the mode value of a DataPoint ArrayList
+     * @param dataList The ArrayList to be used in the calculation
+     * @return Returns a DataPoint representing the DataPoint with the mode value of the DataPoint ArrayList
+     */
     public DataPoint getMode(ArrayList<DataPoint> dataList) {
         double num = 0;
         double measure = Double.MIN_VALUE;
@@ -52,26 +71,28 @@ public class Calculator {
         return new DataPoint(dataList.get(0).getUnit(), measure);
     }
 
-    // Returns the standard deviation of a DataSet
-    public static double strdDeviation(DataSet dataset) {
-        if (dataset.getDataList().size() > 0) {
-            double mean = getMean(dataset.getDataList()).getMeasurement();
+    /**
+     * Finds the standard deviation of the mean of a DataSet
+     * @param dataList The ArrayList to be used in the calculation
+     * @return Returns the standard deviation of the mean of a given DataPoint ArrayList as a double value, returns MIN_VALUE if the DataPoint ArrayList is empty
+     */
+    public static double strdDeviation(ArrayList<DataPoint> dataList) {
+        if (dataList.size() > 0) {
+            double mean = getMean(dataList).getMeasurement();
             int index = 0;
             double sum = 0;
 
-            double[] ndataset = new double[dataset.getDataList().size()];
+            double[] ndataset = new double[dataList.size()];
             index = 0;
-            for (DataPoint d : dataset.getDataList()) {
+            for (DataPoint d : dataList) {
                 ndataset[index] = Math.pow((d.getMeasurement() - mean), 2);
-                System.out.println("ADDING " + Math.pow((d.getMeasurement()-mean), 2) + " AT " + index);
                 index++;
             }
             for (double d : ndataset) {
                 sum += d;
-                System.out.println("ADDING " + d + " TO " + sum);
             }
 
-            return Math.sqrt(sum / dataset.getDataList().size());
+            return Math.sqrt(sum / dataList.size());
         }
         else return Double.MIN_VALUE;
     }

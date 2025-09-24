@@ -1,5 +1,12 @@
 package Tools.Units;
 
+/**
+ * This is a class meant to deal with and standardize Strings representing imperial system units
+ *
+ * @version 1.0.0
+ *
+ */
+
 public class ImperialUnits {
 
     public static final String FEET = "Feet";
@@ -19,6 +26,11 @@ public class ImperialUnits {
     private static String[] unitList = {FEET, INCHES, YARDS, MILES, OUNCES, POUNDS, TONS, FLUID_OUNCES,
             PINTS, QUARTS, GALLONS};
 
+    /**
+     * Checks whether a given String is a valid imperial unit recognized by the ImperialUnits class
+     * @param str The String to be checked
+     * @return Returns true if the unit String is a constant in the ImperialUnits class, false if not
+     */
     public static boolean isAValidImperialUnit(String str) {
         for (String s : unitList) {
             if (s.equals(str)) {

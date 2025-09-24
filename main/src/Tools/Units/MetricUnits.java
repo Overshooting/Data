@@ -1,5 +1,12 @@
 package Tools.Units;
 
+/**
+ * This is a class meant to deal with and standardize Strings representing metric system units
+ *
+ * @version 1.0.0
+ *
+ */
+
 public class MetricUnits {
 
     public static final String METERS = "Meters";
@@ -13,7 +20,12 @@ public class MetricUnits {
 
     private static String[] typesList = {"Meters", "Grams", "Liters"};
 
-    // Creates a valid metric unit based on the provided degree and type of measurement
+    /**
+     * Creates a valid metric unit based on the provided prefix and measurement type
+     * @param prefix The prefix of the desired metric unit
+     * @param type The type of measurement of the desired metric unit
+     * @return If the provided prefix and type can be combined into a valid unit, then returns a valid metric unit String of the correct prefix and type, otherwise returns a String with the value "Not a unit"
+     */
     public static String createMetricUnit(String prefix, String type) {
         if (contains(degreeList, prefix) && contains(typesList, type)) {
             String degOne = prefix.substring(0,1);
@@ -29,6 +41,12 @@ public class MetricUnits {
 
     }
 
+    /**
+     * Internal helper method for parsing metric unit arrays
+     * @param unitList
+     * @param unit
+     * @return
+     */
     private static boolean contains(String[] unitList, String unit) {
         for (String s : unitList) {
             if (unit.equals(s)) {
@@ -38,6 +56,11 @@ public class MetricUnits {
         return false;
     }
 
+    /**
+     * Checks whether a given String is a valid metric unit recognized by the MetricUnits class
+     * @param unit The String to be checked
+     * @return Returns true if the given String is a valid combination of a metric prefix and measurement type
+     */
     public static boolean isAValidMetricUnit(String unit) {
         if (unit.equals(METERS) || unit.equals(GRAMS) || unit.equals(LITERS)) {
             return true;
