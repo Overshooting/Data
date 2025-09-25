@@ -1,8 +1,9 @@
+package Tools;
+
 /**
  * Provided Main class for running project code
  */
 
-package Tools;
 
 public class Main {
 

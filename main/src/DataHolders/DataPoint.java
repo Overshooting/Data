@@ -9,6 +9,8 @@ import java.math.*;
  * Units of a DataPoint must have their first letter be uppercase, and are always in plural form. Refer to the Tools.Units package for classes that construct valid unit Strings or contain constants to help you with standard units.
  * These unit classes may not contain all possible units in a system of measurement, only common ones.
  *
+ * Documentation of all classes and methods found in this project can be found as a html file named allclasses-index of allpackages-index under the generatedjavadocs directory
+ *
  * @version 1.0.0
  *
  */

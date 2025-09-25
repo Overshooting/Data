@@ -9,6 +9,13 @@ import Tools.Units.MetricUnits;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * This is a class meant to create DescribedDataSets using formatted command line inputs
+ *
+ * @version 1.0.0
+ *
+ */
+
 public class DescribedDataSetConstructor {
 
     private ArrayList<DescribedDataPoint> dataList;
